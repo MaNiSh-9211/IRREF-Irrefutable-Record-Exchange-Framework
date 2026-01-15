@@ -1,0 +1,50 @@
+{
+  "request": {
+    "message": {
+      "statementId": "irref-1883b0aa9b316180-7044f580",
+      "timestamp": 1766449725,
+      "timestampISO": "2025-12-23T00:28:45.000Z",
+      "senderPublicKey": "49e84db7fd0ae041eea3697621c51b432996049b235b84474c37ea366c1c09bc",
+      "senderPublicKeyBase64": "SehNt/0K4EHuo2l2IcUbQymWBJsjW4RHTDfqNmwcCbw=",
+      "previousMessageHash": "4c49537555238c4bf846aa4e9b95729142f8eb5db3584a4211a70a2c578312e8",
+      "payload": "This is test message #2, chained to message #1",
+      "payloadBytes": "546869732069732074657374206d6573736167652023322c20636861696e656420746f206d657373616765202331",
+      "payloadHash": "63b2bcc562e43685ddc25c9fdb711a8b07e103cf7c8c37f9436a4ab41f88d6bc",
+      "messageHash": "bffe3a059a0a5243ea6b3ba0d9788349788f0a9e866479681d616bdcdb63daa4",
+      "signature": "N/A - signature is embedded in serialized message",
+      "signatureBase64": "N/A - signature is embedded in serialized message",
+      "serializedMessage": "a8617601626964781f69727265662d313838336230616139623331363138302d37303434663538306274731a6949e23d62706b582049e84db7fd0ae041eea3697621c51b432996049b235b84474c37ea366c1c09bc647072657658204c49537555238c4bf846aa4e9b95729142f8eb5db3584a4211a70a2c578312e862706c582e546869732069732074657374206d6573736167652023322c20636861696e656420746f206d65737361676520233163706c68582063b2bcc562e43685ddc25c9fdb711a8b07e103cf7c8c37f9436a4ab41f88d6bc637369675840be97c1a16450a5b2cef97a6a2f0c9517dccab2197a850b6f7d7cf39ffe032f6a863e69af63b1fbaeefff6da1d4c45781680a8f1fc87fdf30dcf15e7600340d03",
+      "serializedMessageBase64": "qGF2AWJpZHgfaXJyZWYtMTg4M2IwYWE5YjMxNjE4MC03MDQ0ZjU4MGJ0cxppSeI9YnBrWCBJ6E23/QrgQe6jaXYhxRtDKZYEmyNbhEdMN+o2bBwJvGRwcmV2WCBMSVN1VSOMS/hGqk6blXKRQvjrXbNYSkIRpwosV4MS6GJwbFguVGhpcyBpcyB0ZXN0IG1lc3NhZ2UgIzIsIGNoYWluZWQgdG8gbWVzc2FnZSAjMWNwbGhYIGOyvMVi5DaF3cJcn9txGosH4QPPfIw3+UNqSrQfiNa8Y3NpZ1hAvpfBoWRQpbLO+XpqLwyVF9zKshl6hQtvfXzzn/4DL2qGPmmvY7H7ru//baHUxFeBaAqPH8h/3zDc8V52ADQNAw=="
+    },
+    "httpRequest": {
+      "method": "POST",
+      "url": "http://localhost:3000/message",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": 394
+      },
+      "body": "{\"message\":\"qGF2AWJpZHgfaXJyZWYtMTg4M2IwYWE5YjMxNjE4MC03MDQ0ZjU4MGJ0cxppSeI9YnBrWCBJ6E23/QrgQe6jaXYhxRtDKZYEmyNbhEdMN+o2bBwJvGRwcmV2WCBMSVN1VSOMS/hGqk6blXKRQvjrXbNYSkIRpwosV4MS6GJwbFguVGhpcyBpcyB0ZXN0IG1lc3NhZ2UgIzIsIGNoYWluZWQgdG8gbWVzc2FnZSAjMWNwbGhYIGOyvMVi5DaF3cJcn9txGosH4QPPfIw3+UNqSrQfiNa8Y3NpZ1hAvpfBoWRQpbLO+XpqLwyVF9zKshl6hQtvfXzzn/4DL2qGPmmvY7H7ru//baHUxFeBaAqPH8h/3zDc8V52ADQNAw==\"}"
+    }
+  },
+  "response": {
+    "httpStatus": 200,
+    "httpHeaders": {
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "POST, OPTIONS",
+      "access-control-allow-headers": "Content-Type",
+      "content-type": "application/json",
+      "date": "Tue, 23 Dec 2025 00:28:45 GMT",
+      "connection": "keep-alive",
+      "keep-alive": "timeout=5",
+      "transfer-encoding": "chunked"
+    },
+    "body": {
+      "success": true,
+      "message": "qGF2AWJpZHgfaXJyZWYtMTg4M2IwYWE5YzQ0MGEwMC0zYmU1M2EwMGJ0cxppSeI9YnBrWCD+4TBSUHr9D4FOQ0pxGgF7yUhAxf2TtcNYFUQPEQbtf2RwcmV2WCC//joFmgpSQ+prO6DZeINJeI8KnoZkeWgdYWvc22PapGJwbFi2eyJyZWNlaXZlZCI6ImlycmVmLTE4ODNiMGFhOWIzMTYxODAtNzA0NGY1ODAiLCJ2ZXJpZmllZCI6dHJ1ZSwidGltZXN0YW1wIjoiMjAyNS0xMi0yM1QwMDoyODo0NS42NzJaIiwibWVzc2FnZUhhc2giOiJiZmZlM2EwNTlhMGE1MjQzZWE2YjNiYTBkOTc4ODM0OTc4OGYwYTllODY2NDc5NjgxZDYxNmJkY2RiNjNkYWE0In1jcGxoWCAxCwtUMCbdsU6Rg3MGoPstdN2EyHWjxjU4AGzrbLX8GGNzaWdYQG91m0aWQ6hZaPAazDMrv6wPqO51r7vPC5nFhdIla5Fe0rF9lbfsAJJuJT2j8O8C+KKorj2Kklc/Ph8Qp/RA8Qk=",
+      "serverPublicKey": "/uEwUlB6/Q+BTkNKcRoBe8lIQMX9k7XDWBVEDxEG7X8=",
+      "timestamp": "2025-12-23T00:28:45.675Z"
+    },
+    "rawBody": "{\"success\":true,\"message\":\"qGF2AWJpZHgfaXJyZWYtMTg4M2IwYWE5YzQ0MGEwMC0zYmU1M2EwMGJ0cxppSeI9YnBrWCD+4TBSUHr9D4FOQ0pxGgF7yUhAxf2TtcNYFUQPEQbtf2RwcmV2WCC//joFmgpSQ+prO6DZeINJeI8KnoZkeWgdYWvc22PapGJwbFi2eyJyZWNlaXZlZCI6ImlycmVmLTE4ODNiMGFhOWIzMTYxODAtNzA0NGY1ODAiLCJ2ZXJpZmllZCI6dHJ1ZSwidGltZXN0YW1wIjoiMjAyNS0xMi0yM1QwMDoyODo0NS42NzJaIiwibWVzc2FnZUhhc2giOiJiZmZlM2EwNTlhMGE1MjQzZWE2YjNiYTBkOTc4ODM0OTc4OGYwYTllODY2NDc5NjgxZDYxNmJkY2RiNjNkYWE0In1jcGxoWCAxCwtUMCbdsU6Rg3MGoPstdN2EyHWjxjU4AGzrbLX8GGNzaWdYQG91m0aWQ6hZaPAazDMrv6wPqO51r7vPC5nFhdIla5Fe0rF9lbfsAJJuJT2j8O8C+KKorj2Kklc/Ph8Qp/RA8Qk=\",\"serverPublicKey\":\"/uEwUlB6/Q+BTkNKcRoBe8lIQMX9k7XDWBVEDxEG7X8=\",\"timestamp\":\"2025-12-23T00:28:45.675Z\"}"
+  },
+  "timestamp": "2025-12-23T00:28:45.676Z"
+}

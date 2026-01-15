@@ -1,0 +1,50 @@
+{
+  "request": {
+    "message": {
+      "statementId": "irref-1883b0aa96c83b00-4795a300",
+      "timestamp": 1766449725,
+      "timestampISO": "2025-12-23T00:28:45.000Z",
+      "senderPublicKey": "49e84db7fd0ae041eea3697621c51b432996049b235b84474c37ea366c1c09bc",
+      "senderPublicKeyBase64": "SehNt/0K4EHuo2l2IcUbQymWBJsjW4RHTDfqNmwcCbw=",
+      "previousMessageHash": null,
+      "payload": "Hello from client! This is test message #1",
+      "payloadBytes": "48656c6c6f2066726f6d20636c69656e742120546869732069732074657374206d657373616765202331",
+      "payloadHash": "52cc649c3e40ca764411c04eacf102477cd2abcc1e39902f726233a8ebb3790b",
+      "messageHash": "4c49537555238c4bf846aa4e9b95729142f8eb5db3584a4211a70a2c578312e8",
+      "signature": "N/A - signature is embedded in serialized message",
+      "signatureBase64": "N/A - signature is embedded in serialized message",
+      "serializedMessage": "a7617601626964781f69727265662d313838336230616139366338336230302d34373935613330306274731a6949e23d62706b582049e84db7fd0ae041eea3697621c51b432996049b235b84474c37ea366c1c09bc62706c582a48656c6c6f2066726f6d20636c69656e742120546869732069732074657374206d65737361676520233163706c68582052cc649c3e40ca764411c04eacf102477cd2abcc1e39902f726233a8ebb3790b63736967584054174ad0ffab9cb2761965006c0c2caf3d13941d2abc48a07c1fdb0b9c04a11ea7941bf7737a2e00d9b5a4f56698c333f01454c5086882304a8d21253b25f208",
+      "serializedMessageBase64": "p2F2AWJpZHgfaXJyZWYtMTg4M2IwYWE5NmM4M2IwMC00Nzk1YTMwMGJ0cxppSeI9YnBrWCBJ6E23/QrgQe6jaXYhxRtDKZYEmyNbhEdMN+o2bBwJvGJwbFgqSGVsbG8gZnJvbSBjbGllbnQhIFRoaXMgaXMgdGVzdCBtZXNzYWdlICMxY3BsaFggUsxknD5AynZEEcBOrPECR3zSq8weOZAvcmIzqOuzeQtjc2lnWEBUF0rQ/6ucsnYZZQBsDCyvPROUHSq8SKB8H9sLnAShHqeUG/dzei4A2bWk9WaYwzPwFFTFCGiCMEqNISU7JfII"
+    },
+    "httpRequest": {
+      "method": "POST",
+      "url": "http://localhost:3000/message",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": 334
+      },
+      "body": "{\"message\":\"p2F2AWJpZHgfaXJyZWYtMTg4M2IwYWE5NmM4M2IwMC00Nzk1YTMwMGJ0cxppSeI9YnBrWCBJ6E23/QrgQe6jaXYhxRtDKZYEmyNbhEdMN+o2bBwJvGJwbFgqSGVsbG8gZnJvbSBjbGllbnQhIFRoaXMgaXMgdGVzdCBtZXNzYWdlICMxY3BsaFggUsxknD5AynZEEcBOrPECR3zSq8weOZAvcmIzqOuzeQtjc2lnWEBUF0rQ/6ucsnYZZQBsDCyvPROUHSq8SKB8H9sLnAShHqeUG/dzei4A2bWk9WaYwzPwFFTFCGiCMEqNISU7JfII\"}"
+    }
+  },
+  "response": {
+    "httpStatus": 200,
+    "httpHeaders": {
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "POST, OPTIONS",
+      "access-control-allow-headers": "Content-Type",
+      "content-type": "application/json",
+      "date": "Tue, 23 Dec 2025 00:28:45 GMT",
+      "connection": "keep-alive",
+      "keep-alive": "timeout=5",
+      "transfer-encoding": "chunked"
+    },
+    "body": {
+      "success": true,
+      "message": "qGF2AWJpZHgfaXJyZWYtMTg4M2IwYWE5OWIzZTk0MC1iOTAyY2Y0MGJ0cxppSeI9YnBrWCD+4TBSUHr9D4FOQ0pxGgF7yUhAxf2TtcNYFUQPEQbtf2RwcmV2WCBMSVN1VSOMS/hGqk6blXKRQvjrXbNYSkIRpwosV4MS6GJwbFi2eyJyZWNlaXZlZCI6ImlycmVmLTE4ODNiMGFhOTZjODNiMDAtNDc5NWEzMDAiLCJ2ZXJpZmllZCI6dHJ1ZSwidGltZXN0YW1wIjoiMjAyNS0xMi0yM1QwMDoyODo0NS42MjlaIiwibWVzc2FnZUhhc2giOiI0YzQ5NTM3NTU1MjM4YzRiZjg0NmFhNGU5Yjk1NzI5MTQyZjhlYjVkYjM1ODRhNDIxMWE3MGEyYzU3ODMxMmU4In1jcGxoWCAvDt9ScdZPIM5zEjLaW6N2MsV/D3CCGJHd2bjrYvTAqGNzaWdYQPPoQH9BWq6BbAKYDDM/8isrYmSBx1WhMkMTRCQEZaL5k8d9gTHPf9unt9Myha57yruJNXlStqw7eDtE0uiWPAE=",
+      "serverPublicKey": "/uEwUlB6/Q+BTkNKcRoBe8lIQMX9k7XDWBVEDxEG7X8=",
+      "timestamp": "2025-12-23T00:28:45.636Z"
+    },
+    "rawBody": "{\"success\":true,\"message\":\"qGF2AWJpZHgfaXJyZWYtMTg4M2IwYWE5OWIzZTk0MC1iOTAyY2Y0MGJ0cxppSeI9YnBrWCD+4TBSUHr9D4FOQ0pxGgF7yUhAxf2TtcNYFUQPEQbtf2RwcmV2WCBMSVN1VSOMS/hGqk6blXKRQvjrXbNYSkIRpwosV4MS6GJwbFi2eyJyZWNlaXZlZCI6ImlycmVmLTE4ODNiMGFhOTZjODNiMDAtNDc5NWEzMDAiLCJ2ZXJpZmllZCI6dHJ1ZSwidGltZXN0YW1wIjoiMjAyNS0xMi0yM1QwMDoyODo0NS42MjlaIiwibWVzc2FnZUhhc2giOiI0YzQ5NTM3NTU1MjM4YzRiZjg0NmFhNGU5Yjk1NzI5MTQyZjhlYjVkYjM1ODRhNDIxMWE3MGEyYzU3ODMxMmU4In1jcGxoWCAvDt9ScdZPIM5zEjLaW6N2MsV/D3CCGJHd2bjrYvTAqGNzaWdYQPPoQH9BWq6BbAKYDDM/8isrYmSBx1WhMkMTRCQEZaL5k8d9gTHPf9unt9Myha57yruJNXlStqw7eDtE0uiWPAE=\",\"serverPublicKey\":\"/uEwUlB6/Q+BTkNKcRoBe8lIQMX9k7XDWBVEDxEG7X8=\",\"timestamp\":\"2025-12-23T00:28:45.636Z\"}"
+  },
+  "timestamp": "2025-12-23T00:28:45.638Z"
+}

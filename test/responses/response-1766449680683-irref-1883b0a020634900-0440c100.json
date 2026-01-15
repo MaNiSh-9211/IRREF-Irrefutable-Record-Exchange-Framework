@@ -1,0 +1,49 @@
+{
+  "request": {
+    "message": {
+      "statementId": "irref-1883b0a020634900-0440c100",
+      "timestamp": 1766449680,
+      "timestampISO": "2025-12-23T00:28:00.000Z",
+      "senderPublicKey": "38cd72aa9657cf059e0f31d80401e43780be337aa34fbfc07c2aa939941a8ada",
+      "senderPublicKeyBase64": "OM1yqpZXzwWeDzHYBAHkN4C+M3qjT7/AfCqpOZQaito=",
+      "previousMessageHash": null,
+      "payload": "Hello from client! This is test message #1",
+      "payloadBytes": "48656c6c6f2066726f6d20636c69656e742120546869732069732074657374206d657373616765202331",
+      "payloadHash": "52cc649c3e40ca764411c04eacf102477cd2abcc1e39902f726233a8ebb3790b",
+      "messageHash": "44deac8a28d6ede2c1ac102bca98635466e979a26feb9113d02515704a876ad9",
+      "signature": "N/A - signature is embedded in serialized message",
+      "signatureBase64": "N/A - signature is embedded in serialized message",
+      "serializedMessage": "a7617601626964781f69727265662d313838336230613032303633343930302d30343430633130306274731a6949e21062706b582038cd72aa9657cf059e0f31d80401e43780be337aa34fbfc07c2aa939941a8ada62706c582a48656c6c6f2066726f6d20636c69656e742120546869732069732074657374206d65737361676520233163706c68582052cc649c3e40ca764411c04eacf102477cd2abcc1e39902f726233a8ebb3790b63736967584096f5daa9850d9568c6ef2f0c732d8e81d7e48f4e21ca068c1ea9e5a65339cef989c14570b8ff10e8e790de53bb843f05d05b2ed58d715a2043bce3b59d585607",
+      "serializedMessageBase64": "p2F2AWJpZHgfaXJyZWYtMTg4M2IwYTAyMDYzNDkwMC0wNDQwYzEwMGJ0cxppSeIQYnBrWCA4zXKqllfPBZ4PMdgEAeQ3gL4zeqNPv8B8Kqk5lBqK2mJwbFgqSGVsbG8gZnJvbSBjbGllbnQhIFRoaXMgaXMgdGVzdCBtZXNzYWdlICMxY3BsaFggUsxknD5AynZEEcBOrPECR3zSq8weOZAvcmIzqOuzeQtjc2lnWECW9dqphQ2VaMbvLwxzLY6B1+SPTiHKBoweqeWmUznO+YnBRXC4/xDo55DeU7uEPwXQWy7VjXFaIEO847WdWFYH"
+    },
+    "httpRequest": {
+      "method": "POST",
+      "url": "http://localhost:3000/message",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": 334
+      },
+      "body": "{\"message\":\"p2F2AWJpZHgfaXJyZWYtMTg4M2IwYTAyMDYzNDkwMC0wNDQwYzEwMGJ0cxppSeIQYnBrWCA4zXKqllfPBZ4PMdgEAeQ3gL4zeqNPv8B8Kqk5lBqK2mJwbFgqSGVsbG8gZnJvbSBjbGllbnQhIFRoaXMgaXMgdGVzdCBtZXNzYWdlICMxY3BsaFggUsxknD5AynZEEcBOrPECR3zSq8weOZAvcmIzqOuzeQtjc2lnWECW9dqphQ2VaMbvLwxzLY6B1+SPTiHKBoweqeWmUznO+YnBRXC4/xDo55DeU7uEPwXQWy7VjXFaIEO847WdWFYH\"}"
+    }
+  },
+  "response": {
+    "httpStatus": 500,
+    "httpHeaders": {
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "POST, OPTIONS",
+      "access-control-allow-headers": "Content-Type",
+      "content-type": "application/json",
+      "date": "Tue, 23 Dec 2025 00:28:00 GMT",
+      "connection": "keep-alive",
+      "keep-alive": "timeout=5",
+      "transfer-encoding": "chunked"
+    },
+    "body": {
+      "success": false,
+      "error": "receivedMessage.protocolVersion is not a function",
+      "timestamp": "2025-12-23T00:28:00.682Z"
+    },
+    "rawBody": "{\"success\":false,\"error\":\"receivedMessage.protocolVersion is not a function\",\"timestamp\":\"2025-12-23T00:28:00.682Z\"}"
+  },
+  "timestamp": "2025-12-23T00:28:00.683Z"
+}

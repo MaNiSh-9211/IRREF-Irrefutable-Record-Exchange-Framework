@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRREF Message Verifier</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .info {
+            color: #3498db;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        .field {
+            margin: 10px 0;
+        }
+        .field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .field-value {
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            word-break: break-all;
+            font-size: 12px;
+        }
+        .file-input {
+            margin: 10px 0;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 IRREF Message Verifier</h1>
+        <p class="info">Verify IRREF (Irrefutable Record Exchange Framework) messages. Upload a response file or paste message data.</p>
+        
+        <div class="section">
+            <h2>Upload Response File</h2>
+            <input type="file" id="fileInput" accept=".json" />
+            <button onclick="loadFile()">Load File</button>
+        </div>
+        
+        <div class="section">
+            <h2>Or Paste Message Data</h2>
+            <label>Message (Base64 CBOR):</label>
+            <textarea id="messageInput" placeholder="Paste base64-encoded CBOR message here..."></textarea>
+            <label>Public Key (Base64 or Hex):</label>
+            <textarea id="publicKeyInput" placeholder="Paste sender's public key (base64 or hex)..."></textarea>
+            <button onclick="verifyMessage()">Verify Message</button>
+        </div>
+        
+        <div id="result"></div>
+    </div>
+
+    <script type="module">
+        // Load the IRREF SDK
+        import init, { WasmMessage, WasmKeyPair } from '../irref-sdk/pkg/irref_core.js';
+        
+        let wasmInitialized = false;
+        
+        async function initWasm() {
+            if (!wasmInitialized) {
+                await init();
+                wasmInitialized = true;
+            }
+        }
+        
+        window.loadFile = async function() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    await initWasm();
+                    
+                    // Extract message from response
+                    let messageBase64;
+                    let publicKeyBase64;
+                    
+                    if (data.response && data.response.body && data.response.body.message) {
+                        messageBase64 = data.response.body.message;
+                        publicKeyBase64 = data.response.body.serverPublicKey || data.request.message.senderPublicKeyBase64;
+                    } else if (data.message) {
+                        messageBase64 = data.message;
+                        publicKeyBase64 = data.serverPublicKey;
+                    }
+                    
+                    if (messageBase64) {
+                        document.getElementById('messageInput').value = messageBase64;
+                        if (publicKeyBase64) {
+                            document.getElementById('publicKeyInput').value = publicKeyBase64;
+                        }
+                        await verifyMessage();
+                    } else {
+                        showResult('error', 'Could not find message in file. Expected "response.body.message" or "message" field.');
+                    }
+                } catch (error) {
+                    showResult('error', 'Error reading file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        };
+        
+        window.verifyMessage = async function() {
+            await initWasm();
+            
+            const messageBase64 = document.getElementById('messageInput').value.trim();
+            const publicKeyInput = document.getElementById('publicKeyInput').value.trim();
+            
+            if (!messageBase64) {
+                showResult('error', 'Please provide a message (base64 CBOR)');
+                return;
+            }
+            
+            try {
+                // Decode message
+                const messageBytes = Uint8Array.from(atob(messageBase64), c => c.charCodeAt(0));
+                const message = WasmMessage.from_bytes(messageBytes);
+                
+                // Get message details
+                const details = {
+                    statementId: message.statement_id(),
+                    timestamp: new Date(message.timestamp() * 1000).toISOString(),
+                    payload: new TextDecoder().decode(message.payload()),
+                    payloadHash: Array.from(message.payload_hash()).map(b => b.toString(16).padStart(2, '0')).join(''),
+                    messageHash: message.compute_hash_hex(),
+                    senderPublicKey: Array.from(message.sender_public_key()).map(b => b.toString(16).padStart(2, '0')).join(''),
+                    previousMessageHash: message.previous_message_hash() 
+                        ? Array.from(message.previous_message_hash()).map(b => b.toString(16).padStart(2, '0')).join('')
+                        : null,
+                    signature: message.signature() 
+                        ? Array.from(message.signature()).map(b => b.toString(16).padStart(2, '0')).join('')
+                        : null
+                };
+                
+                // Verify message
+                let verified = false;
+                let verificationError = null;
+                
+                if (publicKeyInput) {
+                    try {
+                        let publicKeyBytes;
+                        if (publicKeyInput.length === 64) {
+                            // Hex
+                            publicKeyBytes = Uint8Array.from(publicKeyInput.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+                        } else {
+                            // Base64
+                            publicKeyBytes = Uint8Array.from(atob(publicKeyInput), c => c.charCodeAt(0));
+                        }
+                        verified = message.verify_with_public_key(publicKeyBytes);
+                    } catch (e) {
+                        verificationError = e.message;
+                    }
+                } else {
+                    // Try with sender's public key
+                    verified = message.verify();
+                }
+                
+                // Display results
+                let html = '<div class="section"><h2>Message Details</h2>';
+                html += '<div class="field"><label>Statement ID:</label><div class="field-value">' + details.statementId + '</div></div>';
+                html += '<div class="field"><label>Timestamp:</label><div class="field-value">' + details.timestamp + '</div></div>';
+                html += '<div class="field"><label>Payload:</label><div class="field-value">' + escapeHtml(details.payload) + '</div></div>';
+                html += '<div class="field"><label>Payload Hash:</label><div class="field-value">' + details.payloadHash + '</div></div>';
+                html += '<div class="field"><label>Message Hash:</label><div class="field-value">' + details.messageHash + '</div></div>';
+                html += '<div class="field"><label>Sender Public Key:</label><div class="field-value">' + details.senderPublicKey + '</div></div>';
+                if (details.previousMessageHash) {
+                    html += '<div class="field"><label>Previous Message Hash:</label><div class="field-value">' + details.previousMessageHash + '</div></div>';
+                }
+                if (details.signature) {
+                    html += '<div class="field"><label>Signature:</label><div class="field-value">' + details.signature.substring(0, 64) + '...' + '</div></div>';
+                }
+                html += '</div>';
+                
+                html += '<div class="result ' + (verified ? 'success' : 'error') + '">';
+                if (verified) {
+                    html += '<h2 class="success">✓ Message Verified Successfully</h2>';
+                    html += '<p>The message signature is valid. This message was signed by the holder of the private key corresponding to the public key.</p>';
+                } else {
+                    html += '<h2 class="error">✗ Message Verification Failed</h2>';
+                    if (verificationError) {
+                        html += '<p>Error: ' + escapeHtml(verificationError) + '</p>';
+                    } else {
+                        html += '<p>The message signature is invalid. The message may have been tampered with or signed with a different key.</p>';
+                    }
+                }
+                html += '</div>';
+                
+                document.getElementById('result').innerHTML = html;
+                
+            } catch (error) {
+                showResult('error', 'Error verifying message: ' + error.message);
+            }
+        };
+        
+        function showResult(type, message) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="result ' + type + '"><h2 class="' + type + '">' + 
+                (type === 'success' ? '✓' : '✗') + ' ' + message + '</h2></div>';
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
+

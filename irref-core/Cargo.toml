@@ -1,0 +1,43 @@
+[package]
+name = "irref-core"
+version = "0.1.0"
+edition = "2021"
+description = "IRREF - Irrefutable Record Exchange Framework Core Library"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yourorg/irref"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+
+[dependencies]
+# Canonical CBOR encoding/decoding
+ciborium = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_bytes = "0.11"
+
+# Cryptography
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+sha2 = "0.10"
+hex = "0.4"
+getrandom = { version = "0.2", features = ["js"] }
+
+# WASM support (required for wasm-pack builds)
+wasm-bindgen = "0.2"
+
+# Utilities
+chrono = "0.4"
+rand = "0.8"
+
+[dev-dependencies]
+
+[[example]]
+name = "basic_usage"
+path = "examples/basic_usage.rs"
+
+[[example]]
+name = "tamper_detection"
+path = "examples/tamper_detection.rs"
+

@@ -1,0 +1,33 @@
+{
+  "name": "irref-sdk",
+  "version": "0.1.0",
+  "description": "IRREF - Irrefutable Record Exchange Framework Node.js SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npm run build:wasm && npm run build:ts",
+    "build:wasm": "cd ../irref-core && wasm-pack build --target nodejs --out-dir ../irref-sdk/pkg",
+    "build:ts": "tsc",
+    "test": "node dist/test.js",
+    "example": "node dist/example.js",
+    "test:server": "node test/server.js",
+    "test:client": "npm run build && node test/client.js"
+  },
+  "keywords": [
+    "irref",
+    "cryptography",
+    "non-repudiation",
+    "verifiable",
+    "signature"
+  ],
+  "author": "",
+  "license": "MIT OR Apache-2.0",
+  "dependencies": {
+    "irref-core": "file:./pkg"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+
