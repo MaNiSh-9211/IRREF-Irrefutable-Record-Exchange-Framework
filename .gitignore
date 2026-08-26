@@ -24,3 +24,8 @@ Thumbs.db
 *.exe
 *.dll
 
+
+# --- security: local env & deps ---
+.env
+.env.*
+!*.env.example
